@@ -22,9 +22,10 @@ export const navLinks = [
 export const hero = {
   headline: 'I build the web.', // TODO: your headline (keep the full stop)
   subtitle: 'Front-end developer, primeswitch.', // TODO
-  text: 'TODO: Two short lines about what you build and who you build it for.',
+  text: 'I design and build fast, accessible interfaces with React and Tailwind. Currently shipping client projects at HGSL.', // TODO: replace with your own two lines
   primaryCta: { label: 'Explore more', href: '#work' },
   secondaryCta: { label: 'Contact', href: '#contact' },
+  numeral: '01',
   verticalLabel: 'Portfolio',
   meta: 'React - Tailwind - Django', // TODO
 }

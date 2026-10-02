@@ -24,6 +24,18 @@
   /* Radii: small for buttons, large only for soft sphere shapes */
   --radius-btn: 4px;
   --radius-sphere: 9999px;
+
+  /* Slow float for the hero spheres (duration/delay are set per sphere) */
+  --animate-sphere-float: sphere-float 8s ease-in-out infinite;
+  @keyframes sphere-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -14px, 0) scale(1.03);
+    }
+  }
 }
 
 /* ------------------------------------------------------------------
@@ -99,5 +111,33 @@
   :focus-visible {
     outline: 2px solid var(--color-coral);
     outline-offset: 3px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Hero background + coral frame (Phase 2)
+------------------------------------------------------------------ */
+@layer components {
+  .hero-bg {
+    background:
+      radial-gradient(55% 60% at 78% 55%, rgb(224 24 155 / 0.4), transparent 70%),
+      radial-gradient(45% 50% at 12% 100%, rgb(47 91 216 / 0.3), transparent 70%),
+      linear-gradient(120deg, var(--color-violet-deep) 0%, #6a0a8e 50%, var(--color-violet) 100%);
+  }
+
+  /* Subtle coral edge glow on small screens... */
+  .hero-frame {
+    box-shadow:
+      inset 0 0 0 2px rgb(255 90 106 / 0.5),
+      inset 0 0 60px rgb(255 90 106 / 0.18);
+  }
+
+  /* ...a proper coral frame on large screens, like Reference 1 */
+  @media (min-width: 64rem) {
+    .hero-frame {
+      box-shadow:
+        inset 0 0 0 8px var(--color-coral),
+        inset 0 0 120px rgb(255 90 106 / 0.28);
+    }
   }
 }

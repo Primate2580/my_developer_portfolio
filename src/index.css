@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens. Every --color-* here becomes a utility automatically:
+   bg-violet-deep, text-coral, border-orange, from-magenta, etc.
+------------------------------------------------------------------- */
+@theme {
+  /* Colors */
+  --color-ink: #12002b;
+  --color-violet-deep: #4b0082;
+  --color-violet: #8a0a9e;
+  --color-magenta: #e0189b;
+  --color-coral: #ff5a6a;
+  --color-orange: #ff9a62;
+  --color-cyan: #37d5ff;
+  --color-blue: #2f5bd8;
+  --color-lilac: #a89bff;
+  --color-rail: rgba(18, 0, 43, 0.65);
+
+  /* Fonts */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Oswald", Impact, sans-serif;
+
+  /* Radii: small for buttons, large only for soft sphere shapes */
+  --radius-btn: 4px;
+  --radius-sphere: 9999px;
+}
+
+/* ------------------------------------------------------------------
+   Global base styles
+------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Leaves room for the fixed top bar (built in Phase 1) when jumping to anchors */
+    scroll-padding-top: 4.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-coral);
+    color: #fff;
+  }
+
+  /* Type scale: fluid so it works from 360px to 1920px without breakpoints */
+  h1 {
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  p {
+    max-width: 65ch;
+  }
+
+  /* Visible focus for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-coral);
+    outline-offset: 3px;
+  }
+}

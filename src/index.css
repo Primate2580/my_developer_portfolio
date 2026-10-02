@@ -30,10 +30,22 @@
    Global base styles
 ------------------------------------------------------------------ */
 @layer base {
+  /* Layout sizes shared by the header, the side rail and <main>.
+     Change them here and everything stays aligned. */
+  :root {
+    --header-h: 4rem;
+    --rail-width: 2.75rem; /* 44px on mobile */
+  }
+  @media (min-width: 48rem) {
+    :root {
+      --rail-width: 4rem; /* 64px from md up */
+    }
+  }
+
   html {
     scroll-behavior: smooth;
-    /* Leaves room for the fixed top bar (built in Phase 1) when jumping to anchors */
-    scroll-padding-top: 4.5rem;
+    /* Leaves room for the fixed top bar when jumping to anchors */
+    scroll-padding-top: calc(var(--header-h) + 0.5rem);
     -webkit-text-size-adjust: 100%;
   }
 

@@ -4,10 +4,10 @@ import Navigation from './components/Navigation'
 import { MotionConfig } from 'framer-motion'
 import Hero from './components/Hero'
 import About from './components/About'
+import Skills from './components/Skills'
 
 // Section shells: each one gets real content in its own phase.
 const shells = [
-  { id: 'skills', label: 'Skills', tone: 'bg-violet-deep/40' },
   { id: 'work', label: 'Work', tone: 'bg-ink' },
   { id: 'experience', label: 'Experience', tone: 'bg-violet-deep/40' },
   { id: 'contact', label: 'Contact', tone: 'bg-ink' },
@@ -31,6 +31,7 @@ export default function App() {
 
         <Hero />
         <About />
+        <Skills />
 
         {shells.map(({ id, label, tone }) => (
           <section

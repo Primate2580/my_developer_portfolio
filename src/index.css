@@ -25,6 +25,14 @@
   --radius-btn: 4px;
   --radius-sphere: 9999px;
 
+  /* Skills marquee: slides the track left by half its width, then loops */
+  --animate-marquee: marquee 45s linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
   /* Slow float for the hero spheres (duration/delay are set per sphere) */
   --animate-sphere-float: sphere-float 8s ease-in-out infinite;
   @keyframes sphere-float {

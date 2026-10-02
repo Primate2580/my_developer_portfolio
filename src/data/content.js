@@ -46,10 +46,12 @@ export const about = {
 
 export const skills = {
   label: 'Skills',
+  numeral: '03',
+  // icon: 'monitor' | 'server' | 'wrench' (see iconMap in components/Skills.jsx)
   groups: [
-    { title: 'Front-end', items: ['React', 'JavaScript', 'Tailwind CSS', 'HTML & CSS'] }, // TODO
-    { title: 'Back-end', items: ['Python', 'Django'] }, // TODO
-    { title: 'Tools', items: ['Git & GitHub', 'Vite', 'Supabase'] }, // TODO
+    { title: 'Front-end', icon: 'monitor', items: ['React', 'JavaScript', 'Tailwind CSS', 'HTML & CSS'] }, // TODO
+    { title: 'Back-end', icon: 'server', items: ['Python', 'Django'] }, // TODO
+    { title: 'Tools', icon: 'wrench', items: ['Git & GitHub', 'Vite', 'Supabase'] }, // TODO
   ],
 }
 

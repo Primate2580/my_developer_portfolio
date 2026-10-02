@@ -57,7 +57,7 @@
   html {
     scroll-behavior: smooth;
     /* Leaves room for the fixed top bar when jumping to anchors */
-    scroll-padding-top: calc(var(--header-h) + 0.5rem);
+    scroll-padding-top: var(--header-h);
     -webkit-text-size-adjust: 100%;
   }
 

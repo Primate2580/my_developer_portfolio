@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { navLinks } from '../data/content'
 import Logo from './ui/Logo'
 
@@ -5,8 +6,22 @@ import Logo from './ui/Logo'
 // Mobile : [hamburger]   [logo centred]   [empty]
 // Desktop: [logo left]                    [links right]
 export default function Header({ active, menuOpen, onToggle, toggleRef }) {
+  // Transparent over the hero; once you scroll, it gets a dark blurred background
+  // so page content passing underneath never collides with the logo or links.
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="fixed inset-x-0 top-0 z-40 grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center bg-linear-to-b from-ink/80 to-transparent px-3 md:flex md:justify-between md:px-8">
+    <header
+      className={`fixed inset-x-0 top-0 z-40 grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center px-3 transition-colors duration-300 motion-reduce:transition-none md:flex md:justify-between md:px-8 ${
+        scrolled ? 'bg-ink/85 backdrop-blur-md' : 'bg-linear-to-b from-ink/80 to-transparent'
+      }`}
+    >
       {/* Hamburger: three bars, the middle one shorter. Mobile only. */}
       <button
         ref={toggleRef}

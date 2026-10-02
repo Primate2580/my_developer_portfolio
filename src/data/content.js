@@ -32,15 +32,16 @@ export const hero = {
 
 export const about = {
   label: 'About',
-  statement: 'TODO: A bold one or two line statement about you.',
-  bio: 'TODO: Short bio paragraph. Who you are, what you care about, how you work.',
+  numeral: '02',
+  statement: ['I turn ideas into', 'fast, polished websites.'], // TODO: your two-line statement
+  bio: "I'm a web developer based in Nigeria. I build interfaces with React and Tailwind and back ends with Python and Django. I like work where design and code meet, and I learn best by shipping real projects.", // TODO: rewrite in your own words
   facts: [
-    { label: 'Location', value: 'Nigeria' },
-    { label: 'Role', value: 'Web / Software Developer' }, // TODO
-    { label: 'Focus', value: 'TODO: e.g. React interfaces' },
+    { label: 'Location', value: 'Nigeria' }, // TODO: add your city if you like
+    { label: 'Role', value: 'Web / Software Developer' },
+    { label: 'Focus', value: 'React interfaces' }, // TODO
   ],
-  photo: '/profile.jpg', // TODO: add your photo to /public/profile.jpg
-  photoAlt: 'TODO: Portrait of Alabi Tosin Samson',
+  // Your photo goes in src/assets/profile.jpg (see the README in that folder)
+  photoAlt: 'Portrait of Alabi Tosin Samson', // TODO: describe your photo, e.g. "Tosin smiling, wearing a blue shirt"
 }
 
 export const skills = {

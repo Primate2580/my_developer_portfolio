@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { navLinks } from '../data/content'
+import Dash from './ui/Dash'
 
 // Persistent left rail (Reference 2): dark, translucent, rotated labels
 // separated by short orange dashes. Visible on every screen size.
@@ -15,7 +16,9 @@ export default function SideRail({ active }) {
           return (
             <Fragment key={href}>
               {i > 0 && (
-                <li aria-hidden="true" className="h-0.5 w-4 bg-orange" />
+                <li aria-hidden="true">
+                  <Dash />
+                </li>
               )}
               <li>
                 <a

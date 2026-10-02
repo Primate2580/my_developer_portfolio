@@ -1,11 +1,12 @@
 import SkipLink from './components/ui/SkipLink'
 import DotRow from './components/ui/DotRow'
 import Navigation from './components/Navigation'
+import { MotionConfig } from 'framer-motion'
 import Hero from './components/Hero'
+import About from './components/About'
 
 // Section shells: each one gets real content in its own phase.
 const shells = [
-  { id: 'about', label: 'About', tone: 'bg-ink' },
   { id: 'skills', label: 'Skills', tone: 'bg-violet-deep/40' },
   { id: 'work', label: 'Work', tone: 'bg-ink' },
   { id: 'experience', label: 'Experience', tone: 'bg-violet-deep/40' },
@@ -14,7 +15,8 @@ const shells = [
 
 export default function App() {
   return (
-    <>
+    // reducedMotion="user": scroll animations only fade (no sliding) for people who ask for less motion
+    <MotionConfig reducedMotion="user">
       <SkipLink />
       <Navigation />
 
@@ -28,6 +30,7 @@ export default function App() {
         <DotRow className="absolute left-(--rail-width) right-0 top-[calc(var(--header-h)+0.75rem)] z-10" />
 
         <Hero />
+        <About />
 
         {shells.map(({ id, label, tone }) => (
           <section
@@ -41,6 +44,6 @@ export default function App() {
           </section>
         ))}
       </main>
-    </>
+    </MotionConfig>
   )
 }

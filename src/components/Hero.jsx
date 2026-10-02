@@ -36,12 +36,8 @@ export default function Hero() {
         // -ml pulls the background under the translucent rail (see Phase 1 note)
         className="relative -ml-(--rail-width) min-h-svh overflow-hidden bg-ink"
       >
-        {/* Background gradient + coral frame (decorative) */}
+        {/* Background gradient (decorative) */}
         <div aria-hidden="true" className="hero-bg absolute inset-0" />
-        <div
-          aria-hidden="true"
-          className="hero-frame pointer-events-none absolute bottom-0 left-(--rail-width) right-0 top-(--header-h)"
-        />
 
         {/* Big outlined numeral, top right */}
         <span

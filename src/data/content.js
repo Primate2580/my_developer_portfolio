@@ -128,12 +128,32 @@ export const experience = {
 
 export const contact = {
   label: 'Contact',
+  numeral: '06',
   headline: "Let's talk.",
-  text: 'TODO: One or two lines inviting people to reach out.',
+  text: "Have a project in mind, or just want to say hello? Send me a message and I'll get back to you.", // TODO
+  form: {
+    intro: 'All fields are required.',
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
+    submit: 'Send message',
+    sending: 'Sending...',
+    successTitle: 'Message sent',
+    successText: "Thanks for reaching out. I'll reply as soon as I can.", // TODO
+    another: 'Send another message',
+    errorText: "Something went wrong and your message wasn't sent. Please try again, or email me directly:",
+    notConnected: "The contact form isn't connected yet. Please email me directly:",
+  },
 }
 
+// icon: 'github' | 'linkedin' | 'globe' (see iconMap in components/Contact.jsx)
 export const socials = [
-  { label: 'GitHub', href: 'https://github.com/Primate2580' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/TODO' }, // TODO: your LinkedIn URL
-  // TODO: add X/Twitter, etc. if you want them
+  { label: 'GitHub', handle: 'Primate2580', icon: 'github', href: 'https://github.com/Primate2580' },
+  { label: 'LinkedIn', handle: 'Alabi Tosin Samson', icon: 'linkedin', href: 'https://www.linkedin.com/in/TODO' }, // TODO: your LinkedIn URL
+  { label: 'Website', icon: 'globe', href: 'https://example.com' }, // TODO: swap for X, YouTube, etc. (or delete this line)
 ]
+
+export const footer = {
+  meta: 'Built with React - Tailwind - Vite',
+  rights: 'All rights reserved.',
+}

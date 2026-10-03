@@ -1,17 +1,14 @@
+import { MotionConfig } from 'framer-motion'
 import SkipLink from './components/ui/SkipLink'
 import DotRow from './components/ui/DotRow'
 import Navigation from './components/Navigation'
-import { MotionConfig } from 'framer-motion'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
-
-// Section shells: each one gets real content in its own phase.
-const shells = [
-  { id: 'contact', label: 'Contact', tone: 'bg-ink' },
-]
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
@@ -34,19 +31,10 @@ export default function App() {
         <Skills />
         <Projects />
         <Experience />
-
-        {shells.map(({ id, label, tone }) => (
-          <section
-            key={id}
-            id={id}
-            aria-labelledby={`${id}-heading`}
-            className={`-ml-(--rail-width) flex min-h-screen flex-col items-start justify-center gap-6 pl-[calc(var(--rail-width)+1.5rem)] pr-6 ${tone}`}
-          >
-            <p className="text-xs uppercase tracking-[0.35em] text-coral">Section shell</p>
-            <h2 id={`${id}-heading`}>{label}</h2>
-          </section>
-        ))}
+        <Contact />
       </main>
+
+      <Footer />
     </MotionConfig>
   )
 }

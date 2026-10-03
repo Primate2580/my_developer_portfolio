@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { MotionConfig, motion, useIsPresent } from 'framer-motion'
 import { X } from 'lucide-react'
 import { navLinks } from '../data/content'
+import { DURATION, EASE } from '../lib/motion'
 import Logo from './ui/Logo'
 
 const list = {
@@ -10,7 +11,7 @@ const list = {
 }
 const item = {
   hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE } },
 }
 
 // Full-screen overlay menu. Escape + scroll lock live in Navigation;
@@ -71,8 +72,8 @@ export default function MobileMenu({ active, onClose }) {
         aria-label="Menu"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 0.2 } }}
-        transition={{ duration: 0.25 }}
+        exit={{ opacity: 0, transition: { duration: DURATION.fast } }}
+        transition={{ duration: DURATION.base, ease: EASE }}
         onKeyDown={handleKeyDown}
         onClick={handleBackdropClick}
         className="fixed inset-0 z-50 flex items-center justify-center bg-linear-to-br from-violet-deep via-ink to-ink px-8 md:hidden"

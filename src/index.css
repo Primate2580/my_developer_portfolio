@@ -25,6 +25,11 @@
   --radius-btn: 4px;
   --radius-sphere: 9999px;
 
+  /* Motion: one easing and a default speed for every `transition-*` utility */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+
   /* Skills marquee: slides the track left by half its width, then loops */
   --animate-marquee: marquee 45s linear infinite;
   @keyframes marquee {
@@ -53,6 +58,11 @@
   /* Layout sizes shared by the header, the side rail and <main>.
      Change them here and everything stays aligned. */
   :root {
+    /* Motion speeds. Use as duration-(--duration-base) etc. JS twins: src/lib/motion.js */
+    --duration-fast: 200ms;
+    --duration-base: 400ms;
+    --duration-slow: 700ms;
+
     --header-h: 4rem;
     --rail-width: 2.75rem; /* 44px on mobile */
   }
@@ -69,9 +79,19 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* People who ask for less motion get none: this is a safety net on top of the
+     per-component motion-reduce: classes (and framer-motion's own reducedMotion setting). */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 

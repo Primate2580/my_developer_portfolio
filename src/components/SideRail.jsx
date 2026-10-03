@@ -25,7 +25,7 @@ export default function SideRail({ active }) {
                   href={href}
                   aria-current={isActive ? 'true' : undefined}
                   // vertical-rl + rotate-180 makes the text read bottom-to-top
-                  className="block rotate-180 py-1 text-[0.65rem] font-medium uppercase tracking-[0.25em] text-white/60 transition-colors [writing-mode:vertical-rl] hover:text-white aria-[current=true]:font-semibold aria-[current=true]:text-coral motion-reduce:transition-none md:text-xs"
+                  className="flex min-h-11 w-(--rail-width) rotate-180 items-center justify-center py-2 text-xs font-medium uppercase tracking-[0.25em] text-white/60 transition-colors [writing-mode:vertical-rl] hover:text-white aria-[current=true]:font-semibold aria-[current=true]:text-coral motion-reduce:transition-none"
                 >
                   {label}
                 </a>

@@ -17,7 +17,6 @@ export default function Experience() {
         className="absolute inset-0 bg-[radial-gradient(45%_40%_at_90%_20%,rgb(138_10_158/0.3),transparent_70%),radial-gradient(40%_40%_at_5%_75%,rgb(255_90_106/0.14),transparent_70%)]"
       />
       <DotRow className="absolute left-(--rail-width) right-0 top-8" />
-      <DotRow className="absolute bottom-8 left-(--rail-width) right-0 opacity-50" />
 
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Numeral + label */}
@@ -40,28 +39,28 @@ export default function Experience() {
         </Reveal>
 
         {/* Timeline.
-            Mobile : line on the left, cards to its right.
-            md+    : line down the middle, cards alternate left / right. */}
-        <ol role="list" className="relative space-y-10 md:space-y-14">
+            Below lg: line on the left, cards to its right.
+            lg+   : line down the middle, cards alternate left / right. */}
+        <ol role="list" className="relative space-y-10 lg:space-y-14">
           {/* the thin line */}
           <span
             aria-hidden="true"
-            className="absolute bottom-0 left-[7px] top-2 w-px bg-white/25 md:left-1/2 md:-translate-x-1/2"
+            className="absolute bottom-0 left-[7px] top-2 w-px bg-white/25 lg:left-1/2 lg:-translate-x-1/2"
           />
 
           {experience.items.map((item, i) => {
             const onRight = i % 2 === 1
             return (
-              <li key={`${item.role}-${i}`} className="relative pl-8 md:grid md:grid-cols-2 md:pl-0">
+              <li key={`${item.role}-${i}`} className="relative pl-8 lg:grid lg:grid-cols-2 lg:pl-0">
                 {/* dot marker: filled coral for the current role, outlined for earlier ones */}
                 <span
                   aria-hidden="true"
                   data-dot
-                  className={`absolute left-0 top-2 h-3.5 w-3.5 rounded-full border-2 border-coral md:left-1/2 md:-translate-x-1/2 ${item.current ? 'bg-coral' : 'bg-ink'}`}
+                  className={`absolute left-0 top-2 h-3.5 w-3.5 rounded-full border-2 border-coral lg:left-1/2 lg:-translate-x-1/2 ${item.current ? 'bg-coral' : 'bg-ink'}`}
                 />
 
                 <Reveal
-                  className={`md:col-start-1 md:row-start-1 ${onRight ? 'md:col-start-2 md:pl-14' : 'md:pr-14'}`}
+                  className={`lg:col-start-1 lg:row-start-1 ${onRight ? 'lg:col-start-2 lg:pl-14' : 'lg:pr-14'}`}
                 >
                   <article className="rounded-lg border border-white/10 bg-violet/20 p-5 backdrop-blur-md sm:p-6 md:p-8">
                     <p className="mb-2 text-xs uppercase tracking-[0.2em] text-orange md:tracking-[0.3em]">{item.dates}</p>
@@ -84,7 +83,7 @@ export default function Experience() {
         </ol>
 
         {/* CV download */}
-        <Reveal className="mt-14 md:flex md:justify-center">
+        <Reveal className="mt-14 lg:flex lg:justify-center">
           <Button
             href={experience.cv.href}
             download={experience.cv.filename}

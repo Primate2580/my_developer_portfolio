@@ -53,7 +53,7 @@ export default function ProjectImage({ project, index }) {
         draggable="false"
         onLoad={() => setState('loaded')}
         onError={() => setState('fallback')}
-        className={`h-full w-full object-cover transition-opacity duration-500 motion-reduce:transition-none ${state === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
+        className={`h-full w-full object-cover transition-opacity duration-(--duration-base) motion-reduce:transition-none ${state === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   )

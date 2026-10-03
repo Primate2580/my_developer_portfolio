@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { MotionConfig, motion } from 'framer-motion'
 import { hero } from '../data/content'
+import { DURATION, EASE } from '../lib/motion'
 import Button from './ui/Button'
 import SphereCluster from './ui/SphereCluster'
 
@@ -11,7 +12,7 @@ const headline = {
 }
 const word = {
   hidden: { y: '110%' },
-  show: { y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  show: { y: 0, transition: { duration: DURATION.slow, ease: EASE } },
 }
 
 // Everything under the headline fades up a little later.
@@ -20,7 +21,7 @@ const fadeUp = {
   show: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: 0.4 + i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: DURATION.slow, delay: 0.4 + i * 0.1, ease: EASE },
   }),
 }
 
@@ -118,7 +119,7 @@ export default function Hero() {
         </div>
 
         {/* Tiny meta line, bottom */}
-        <p className="absolute bottom-8 left-[calc(var(--rail-width)+2.75rem)] z-10 text-[0.7rem] uppercase tracking-[0.25em] text-white/85 md:left-[calc(var(--rail-width)+4rem)]">
+        <p className="absolute bottom-8 left-[calc(var(--rail-width)+2.75rem)] z-10 text-xs uppercase tracking-[0.25em] text-white/85 md:left-[calc(var(--rail-width)+4rem)]">
           {hero.meta}
         </p>
       </section>

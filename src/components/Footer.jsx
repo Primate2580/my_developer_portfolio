@@ -19,7 +19,7 @@ export default function Footer() {
                 <li key={href}>
                   <a
                     href={href}
-                    className="inline-flex min-h-11 items-center text-sm text-white/90 transition-colors hover:text-coral motion-reduce:transition-none"
+                    className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-sm text-white/90 transition-colors hover:text-coral motion-reduce:transition-none"
                   >
                     {label}
                   </a>
@@ -40,7 +40,7 @@ export default function Footer() {
           <p className="text-xs text-white/80">
             &copy; {year} {site.name}. {footer.rights}
           </p>
-          <p className="text-[0.7rem] uppercase tracking-[0.25em] text-white/85">{footer.meta}</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-white/85">{footer.meta}</p>
         </div>
       </div>
     </footer>

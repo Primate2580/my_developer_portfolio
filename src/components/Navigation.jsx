@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { navLinks } from '../data/content'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { useUnknownHash } from '../hooks/useUnknownHash'
 import Header from './Header'
 import SideRail from './SideRail'
 import MobileMenu from './MobileMenu'
@@ -13,6 +14,7 @@ const navIds = navLinks.map((l) => l.href.slice(1))
 export default function Navigation() {
   const [open, setOpen] = useState(false)
   const active = useActiveSection(navIds)
+  useUnknownHash()
   const toggleRef = useRef(null)
   const wasOpen = useRef(false)
 

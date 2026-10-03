@@ -19,7 +19,6 @@ export default function About() {
         className="absolute inset-0 bg-[radial-gradient(55%_50%_at_88%_45%,rgb(138_10_158/0.35),transparent_70%)]"
       />
       <DotRow className="absolute left-(--rail-width) right-0 top-8" />
-      <DotRow className="absolute bottom-8 left-(--rail-width) right-0 opacity-50" />
 
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Big outlined numeral + spaced-out label */}

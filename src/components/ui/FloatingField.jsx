@@ -14,7 +14,7 @@ const field =
   'peer block w-full rounded-btn border bg-white/5 px-4 text-base text-white outline-offset-2 transition-colors placeholder:text-transparent hover:border-white/50 focus:border-white motion-reduce:transition-none'
 
 const label =
-  'pointer-events-none absolute left-4 top-4 origin-left text-base text-white/80 transition-transform duration-200 motion-reduce:transition-none peer-focus:-translate-y-2.5 peer-focus:scale-75 peer-focus:text-white peer-not-placeholder-shown:-translate-y-2.5 peer-not-placeholder-shown:scale-75'
+  'pointer-events-none absolute left-4 top-4 origin-left text-base text-white/80 transition-transform motion-reduce:transition-none peer-focus:-translate-y-2.5 peer-focus:scale-75 peer-focus:text-white peer-not-placeholder-shown:-translate-y-2.5 peer-not-placeholder-shown:scale-75'
 
 export default function FloatingField({ id, label: text, error, multiline = false, ...props }) {
   const Tag = multiline ? 'textarea' : 'input'

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Code } from 'lucide-react'
 import { projects } from '../data/content'
+import { DURATION, EASE } from '../lib/motion'
 import ArrowButton from './ui/ArrowButton'
 import Dash from './ui/Dash'
 import DotRow from './ui/DotRow'
@@ -121,7 +122,6 @@ export default function Projects() {
         className="absolute inset-0 bg-[radial-gradient(50%_45%_at_80%_35%,rgb(255_90_106/0.18),transparent_70%),radial-gradient(45%_45%_at_10%_80%,rgb(47_91_216/0.3),transparent_70%)]"
       />
       <DotRow className="absolute left-(--rail-width) right-0 top-8" />
-      <DotRow className="absolute bottom-8 left-(--rail-width) right-0 opacity-50" />
 
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Numeral + label */}
@@ -181,7 +181,7 @@ export default function Projects() {
             </p>
 
             <div
-              className={`flex gap-4 md:gap-6 ${dragging ? 'transition-none' : 'transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none'}`}
+              className={`flex gap-4 md:gap-6 ${dragging ? 'transition-none' : 'transition-transform duration-(--duration-slow) motion-reduce:transition-none'}`}
               style={{ transform: `translate3d(${-index * step + dragX}px, 0, 0)` }}
             >
               {items.map((p, i) => {
@@ -217,12 +217,12 @@ export default function Projects() {
                     />
                     <div
                       aria-hidden="true"
-                      className={`absolute inset-0 rounded-lg border border-white/10 bg-[#0d0618] shadow-2xl shadow-black/50 transition-opacity duration-500 motion-reduce:transition-none ${active ? 'opacity-100' : 'opacity-0'}`}
+                      className={`absolute inset-0 rounded-lg border border-white/10 bg-[#0d0618] shadow-2xl shadow-black/50 transition-opacity duration-(--duration-base) motion-reduce:transition-none ${active ? 'opacity-100' : 'opacity-0'}`}
                     />
 
                     {/* Panel content: screenshot, tags, links */}
                     <div
-                      className={`relative flex h-full flex-col overflow-hidden rounded-lg transition-opacity duration-500 motion-reduce:transition-none ${active ? 'opacity-100' : 'opacity-0'}`}
+                      className={`relative flex h-full flex-col overflow-hidden rounded-lg transition-opacity duration-(--duration-base) motion-reduce:transition-none ${active ? 'opacity-100' : 'opacity-0'}`}
                     >
                       <div className="min-h-0 flex-1">
                         <ProjectImage project={p} index={i} />
@@ -232,7 +232,7 @@ export default function Projects() {
                           {p.tags.map((t) => (
                             <li
                               key={t}
-                              className="rounded-full border border-white/20 px-2.5 py-0.5 text-[0.7rem] uppercase tracking-widest text-white"
+                              className="rounded-full border border-white/20 px-2.5 py-0.5 text-xs uppercase tracking-widest text-white"
                             >
                               {t}
                             </li>
@@ -264,7 +264,7 @@ export default function Projects() {
               key={index}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: DURATION.base, ease: EASE }}
             >
               <p className="sr-only">
                 Project {index + 1} of {items.length}

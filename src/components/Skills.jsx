@@ -63,7 +63,7 @@ export default function Skills() {
                       tabIndex={0}
                       role="group"
                       aria-labelledby={`skill-group-${i}`}
-                      className="h-full rounded-lg border border-t-2 border-white/10 border-t-white/10 bg-violet/20 p-6 backdrop-blur-md transition-[translate,border-color,background-color] duration-300 hover:-translate-y-1.5 hover:border-t-coral hover:bg-violet/30 focus-visible:-translate-y-1.5 focus-visible:border-t-coral focus-visible:bg-violet/30 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 motion-reduce:focus-visible:translate-y-0 md:p-8"
+                      className="h-full rounded-lg border border-t-2 border-white/10 border-t-white/10 bg-violet/20 p-6 backdrop-blur-md transition-[translate,border-color,background-color] duration-(--duration-base) hover:-translate-y-1.5 hover:border-t-coral hover:bg-violet/30 focus-visible:-translate-y-1.5 focus-visible:border-t-coral focus-visible:bg-violet/30 motion-reduce:transition-colors motion-reduce:hover:translate-y-0 motion-reduce:focus-visible:translate-y-0 md:p-8"
                     >
                       {Icon && (
                         <Icon aria-hidden="true" size={28} strokeWidth={1.5} className="mb-5 text-orange" />

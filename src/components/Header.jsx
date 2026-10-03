@@ -18,7 +18,7 @@ export default function Header({ active, menuOpen, onToggle, toggleRef }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center px-3 transition-colors duration-300 motion-reduce:transition-none md:flex md:justify-between md:px-8 ${
+      className={`fixed inset-x-0 top-0 z-40 grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center px-3 transition-colors duration-(--duration-base) motion-reduce:transition-none md:flex md:justify-between md:px-8 ${
         scrolled ? 'bg-ink/85 backdrop-blur-md' : 'bg-linear-to-b from-ink/80 to-transparent'
       }`}
     >
@@ -33,7 +33,7 @@ export default function Header({ active, menuOpen, onToggle, toggleRef }) {
         className="group flex h-11 w-11 flex-col items-start justify-center gap-[5px] justify-self-start px-2.5 md:hidden"
       >
         <span className="block h-0.5 w-6 bg-white" />
-        <span className="block h-0.5 w-4 bg-white transition-[width] duration-200 group-hover:w-6 motion-reduce:transition-none" />
+        <span className="block h-0.5 w-4 bg-white transition-[width] group-hover:w-6 motion-reduce:transition-none" />
         <span className="block h-0.5 w-6 bg-white" />
       </button>
 
@@ -49,7 +49,7 @@ export default function Header({ active, menuOpen, onToggle, toggleRef }) {
                 <a
                   href={href}
                   aria-current={isActive ? 'true' : undefined}
-                  className="relative py-2 text-sm font-medium text-white/90 transition-colors hover:text-white after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-coral after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current=true]:text-white aria-[current=true]:after:scale-x-100 motion-reduce:transition-none motion-reduce:after:transition-none"
+                  className="relative inline-flex min-h-11 items-center px-1 text-sm font-medium text-white/90 transition-colors hover:text-white after:absolute after:inset-x-1 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-coral after:transition-transform after:duration-(--duration-base) hover:after:scale-x-100 aria-[current=true]:text-white aria-[current=true]:after:scale-x-100 motion-reduce:transition-none motion-reduce:after:transition-none"
                 >
                   {label}
                 </a>

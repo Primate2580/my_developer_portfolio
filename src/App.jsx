@@ -6,10 +6,10 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
+import Experience from './components/Experience'
 
 // Section shells: each one gets real content in its own phase.
 const shells = [
-  { id: 'experience', label: 'Experience', tone: 'bg-violet-deep/40' },
   { id: 'contact', label: 'Contact', tone: 'bg-ink' },
 ]
 
@@ -33,6 +33,7 @@ export default function App() {
         <About />
         <Skills />
         <Projects />
+        <Experience />
 
         {shells.map(({ id, label, tone }) => (
           <section

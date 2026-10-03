@@ -97,24 +97,33 @@ export const projects = {
 
 export const experience = {
   label: 'Experience',
+  numeral: '05',
+  // Newest first. `current: true` fills the timeline dot in coral.
   items: [
     {
       role: 'Web / Software Developer',
       company: 'HGSL',
-      dates: 'TODO: Start - Present',
+      dates: 'Start year - Present', // TODO
+      current: true,
       bullets: [
-        'TODO: A concrete outcome you delivered.',
-        'TODO: Another outcome, ideally with a number.',
+        'Describe what you build and ship day to day.', // TODO
+        'Add a concrete outcome, ideally with a number.', // TODO
+        'Add another outcome: speed, reach, or time saved.', // TODO
       ],
     },
     {
-      role: 'TODO: Education / learning milestone',
-      company: 'TODO',
-      dates: 'TODO',
-      bullets: ['TODO: What you learned or built.'],
+      role: 'Front-end Developer in Training', // TODO: or your education / learning milestone
+      company: 'Self-directed learning', // TODO
+      dates: 'Year - Year', // TODO
+      current: false,
+      bullets: [
+        'Completed project-based courses in HTML, CSS, JavaScript and React.', // TODO
+        'Built portfolio projects to practise real-world skills.', // TODO
+      ],
     },
   ],
-  cv: '/cv.pdf', // TODO: add your CV to /public/cv.pdf
+  // Replace /public/cv.pdf with your real CV (keep the same file name)
+  cv: { href: '/cv.pdf', label: 'Download CV', filename: 'Alabi-Tosin-Samson-CV.pdf' },
 }
 
 export const contact = {

@@ -10,9 +10,9 @@ const variants = {
   ghost: 'border-2 border-white/70 text-white hover:border-white hover:bg-white/10',
 }
 
-export default function Button({ href, variant = 'primary', className = '', children }) {
+export default function Button({ href, variant = 'primary', className = '', children, ...props }) {
   return (
-    <a href={href} className={`${base} ${variants[variant]} ${className}`}>
+    <a href={href} className={`${base} ${variants[variant]} ${className}`} {...props}>
       {children}
     </a>
   )

@@ -57,33 +57,40 @@ export const skills = {
 
 export const projects = {
   label: 'Work',
+  numeral: '04',
+  cta: 'View project',
+  // Screenshots: save them in /public/projects and set `image` below (1200 x 750 px works best).
+  // Leave `image` empty to show a gradient placeholder instead.
   items: [
     {
       id: '01',
-      title: 'TODO: Project One',
-      description: 'TODO: One line about what it does and why it matters.',
+      title: 'Project One', // TODO
+      description: 'A short one-line description of what it does and why it matters.', // TODO
       tags: ['React', 'Tailwind'],
-      image: '', // TODO: /projects/project-one.jpg
-      live: '#', // TODO: live URL
-      code: '#', // TODO: GitHub URL
+      image: '', // TODO: '/projects/project-one.jpg'
+      imageAlt: 'Screenshot of Project One', // TODO: describe what the screenshot shows
+      live: 'https://example.com', // TODO: live URL
+      code: 'https://github.com/Primate2580', // TODO: repository URL
     },
     {
       id: '02',
-      title: 'TODO: Project Two',
-      description: 'TODO: One line about what it does and why it matters.',
+      title: 'Project Two', // TODO
+      description: 'A short one-line description of what it does and why it matters.', // TODO
       tags: ['Django', 'Python'],
-      image: '',
-      live: '#',
-      code: '#',
+      image: '', // TODO: '/projects/project-two.jpg'
+      imageAlt: 'Screenshot of Project Two', // TODO
+      live: 'https://example.com', // TODO
+      code: 'https://github.com/Primate2580', // TODO
     },
     {
       id: '03',
-      title: 'TODO: Project Three',
-      description: 'TODO: One line about what it does and why it matters.',
-      tags: ['JavaScript'],
-      image: '',
-      live: '#',
-      code: '#',
+      title: 'Project Three', // TODO
+      description: 'A short one-line description of what it does and why it matters.', // TODO
+      tags: ['JavaScript', 'Supabase'],
+      image: '', // TODO: '/projects/project-three.jpg'
+      imageAlt: 'Screenshot of Project Three', // TODO
+      live: 'https://example.com', // TODO
+      code: 'https://github.com/Primate2580', // TODO
     },
   ],
 }

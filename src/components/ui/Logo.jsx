@@ -1,18 +1,25 @@
+import { Link } from 'react-router-dom'
 import { site } from '../../data/content'
 
-// Wide-tracked uppercase wordmark. The negative right margin cancels the
-// extra letter-spacing after the last letter so it centres properly.
-export default function Logo({ className = '', asText = false }) {
-  const classes = `-mr-[0.35em] text-sm font-semibold uppercase tracking-[0.35em] text-white ${className}`
-  if (asText) return <span className={`inline-block ${classes}`}>{site.brand}</span>
+// The primeswitch logo. Two files, one per theme: the white version shows in dark mode,
+// the black version in light mode (public/logo-dark.png and public/logo-light.png).
+export default function Logo({ onClick }) {
   return (
-    <a
-      href="#home"
-      aria-label={`${site.brand}, back to top`}
-      // min-h-11 = 44px tall tap target
-      className={`inline-flex min-h-11 items-center ${classes}`}
-    >
-      {site.brand}
-    </a>
+    <Link to="/" onClick={onClick} aria-label={`${site.brand}, home`} className="inline-flex min-h-11 items-center">
+      <img
+        src="/logo-dark.png"
+        alt=""
+        width="614"
+        height="187"
+        className="hidden h-12 w-auto sm:h-14 dark:block"
+      />
+      <img
+        src="/logo-light.png"
+        alt=""
+        width="615"
+        height="186"
+        className="block h-12 w-auto sm:h-14 dark:hidden"
+      />
+    </Link>
   )
 }

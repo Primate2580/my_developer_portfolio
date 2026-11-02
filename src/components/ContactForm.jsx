@@ -12,6 +12,7 @@ const FIELDS = ['name', 'email', 'message']
 const empty = { name: '', email: '', message: '' }
 const f = contact.form
 const mailto = `mailto:${site.email}`
+const linkClass = 'font-semibold text-accent underline underline-offset-4 hover:text-fg'
 
 export default function ContactForm() {
   const [values, setValues] = useState(empty)
@@ -93,18 +94,18 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="rounded-lg border border-white/10 bg-violet/20 p-6 backdrop-blur-md md:p-8">
+    <div className="glass relative rounded-3xl p-6 md:p-8">
       {status === 'success' ? (
         <div role="status" className="py-4">
-          <CircleCheck aria-hidden="true" size={36} strokeWidth={1.5} className="mb-4 text-cyan" />
-          <h3 ref={successRef} tabIndex={-1} className="mb-3 outline-none">
+          <CircleCheck aria-hidden="true" size={36} strokeWidth={1.5} className="mb-4 text-emerald-600 dark:text-emerald-400" />
+          <h2 ref={successRef} tabIndex={-1} className="mb-3 outline-none">
             {f.successTitle}
-          </h3>
-          <p className="mb-8 text-white/90">{f.successText}</p>
+          </h2>
+          <p className="mb-8 text-fg-soft">{f.successText}</p>
           <button
             type="button"
             onClick={sendAnother}
-            className="inline-flex h-12 items-center justify-center rounded-btn border-2 border-white/70 px-8 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10 motion-reduce:transition-none"
+            className="glass inline-flex h-12 items-center justify-center rounded-xl px-6 text-sm font-semibold text-fg transition hover:bg-fg/10 motion-reduce:transition-none"
           >
             {f.another}
           </button>
@@ -112,22 +113,25 @@ export default function ContactForm() {
       ) : (
         <form ref={formRef} onSubmit={onSubmit} noValidate aria-label="Contact form" aria-busy={sending}>
           {!connected && (
-            <div id="form-notice" className="mb-6 rounded-btn border border-orange/60 bg-orange/10 p-4 text-sm leading-relaxed text-white">
+            <div
+              id="form-notice"
+              className="mb-6 rounded-xl border border-amber-500/60 bg-amber-500/10 p-4 text-sm leading-relaxed text-fg"
+            >
               <p>
                 {f.notConnected}{' '}
-                <a href={mailto} className="font-semibold text-orange underline underline-offset-4 hover:text-white">
+                <a href={mailto} className={linkClass}>
                   {site.email}
                 </a>
               </p>
               {import.meta.env.DEV && (
-                <p className="mt-2 text-white/80">
+                <p className="mt-2 text-fg-soft">
                   Developer note: set VITE_FORM_ENDPOINT in a .env file (see the README), then restart the dev server.
                 </p>
               )}
             </div>
           )}
 
-          <p className="mb-5 text-sm text-white/80">{f.intro}</p>
+          <p className="mb-5 text-sm text-fg-soft">{f.intro}</p>
 
           <div className="space-y-1">
             <FloatingField
@@ -181,11 +185,14 @@ export default function ContactForm() {
           </div>
 
           {status === 'error' && (
-            <p role="alert" className="mb-5 flex items-start gap-2 rounded-btn border border-coral/60 bg-coral/10 p-4 text-sm leading-relaxed text-white">
-              <CircleAlert aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-coral" />
+            <p
+              role="alert"
+              className="mb-5 flex items-start gap-2 rounded-xl border border-red-500/60 bg-red-500/10 p-4 text-sm leading-relaxed text-fg"
+            >
+              <CircleAlert aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-red-600 dark:text-red-400" />
               <span>
                 {f.errorText}{' '}
-                <a href={mailto} className="font-semibold text-orange underline underline-offset-4 hover:text-white">
+                <a href={mailto} className={linkClass}>
                   {site.email}
                 </a>
               </span>
@@ -202,11 +209,14 @@ export default function ContactForm() {
             // aria-disabled (not disabled) keeps it focusable and lets us explain why
             aria-disabled={sending || !connected ? 'true' : undefined}
             aria-describedby={!connected ? 'form-notice' : undefined}
-            className="inline-flex h-12 w-full items-center justify-center gap-3 rounded-btn bg-coral px-8 text-xs font-bold uppercase tracking-[0.2em] text-ink transition-colors hover:bg-orange aria-disabled:cursor-not-allowed aria-disabled:opacity-60 aria-disabled:hover:bg-coral motion-reduce:transition-none sm:w-auto"
+            className="grad-bg inline-flex h-12 w-full items-center justify-center gap-3 rounded-xl px-8 text-sm font-semibold text-white shadow-lg shadow-brand-violet/25 transition hover:-translate-y-0.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-60 aria-disabled:hover:translate-y-0 motion-reduce:transition-none sm:w-auto"
           >
             {sending ? (
               <>
-                <span aria-hidden="true" className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink motion-reduce:animate-none" />
+                <span
+                  aria-hidden="true"
+                  className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white motion-reduce:animate-none"
+                />
                 {f.sending}
               </>
             ) : (

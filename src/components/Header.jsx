@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
-import { navLinks } from '../data/content'
+import { NavLink } from 'react-router-dom'
+import { Menu, X } from 'lucide-react'
+import { header, navLinks } from '../data/content'
+import Button from './ui/Button'
 import Logo from './ui/Logo'
+import ThemeToggle from './ui/ThemeToggle'
+import MobileMenu from './MobileMenu'
 
-// Top bar.
-// Mobile : [hamburger]   [logo centred]   [empty]
-// Desktop: [logo left]                    [links right]
-export default function Header({ active, menuOpen, onToggle, toggleRef }) {
-  // Transparent over the hero; once you scroll, it gets a dark blurred background
-  // so page content passing underneath never collides with the logo or links.
+const linkBase =
+  'relative inline-flex min-h-11 items-center px-3 text-sm font-medium transition-colors motion-reduce:transition-none'
+
+export default function Header() {
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  // Glass background appears once you scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
@@ -18,46 +24,59 @@ export default function Header({ active, menuOpen, onToggle, toggleRef }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center px-3 transition-colors duration-(--duration-base) motion-reduce:transition-none md:flex md:justify-between md:px-8 ${
-        scrolled ? 'bg-ink/85 backdrop-blur-md' : 'bg-linear-to-b from-ink/80 to-transparent'
+      className={`fixed inset-x-0 top-0 z-50 h-(--header-h) transition-colors duration-300 motion-reduce:transition-none ${
+        scrolled || open ? 'border-b border-line bg-bg/75 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
     >
-      {/* Hamburger: three bars, the middle one shorter. Mobile only. */}
-      <button
-        ref={toggleRef}
-        type="button"
-        aria-label="Open menu"
-        aria-expanded={menuOpen}
-        aria-controls="mobile-menu"
-        onClick={onToggle}
-        className="group flex h-11 w-11 flex-col items-start justify-center gap-[5px] justify-self-start px-2.5 md:hidden"
-      >
-        <span className="block h-0.5 w-6 bg-white" />
-        <span className="block h-0.5 w-4 bg-white transition-[width] group-hover:w-6 motion-reduce:transition-none" />
-        <span className="block h-0.5 w-6 bg-white" />
-      </button>
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-5 md:px-8">
+        <Logo onClick={() => setOpen(false)} />
 
-      <Logo />
-
-      {/* Desktop links */}
-      <nav aria-label="Primary" className="hidden md:block">
-        <ul className="flex items-center gap-10">
-          {navLinks.map(({ label, href }) => {
-            const isActive = active === href.slice(1)
-            return (
-              <li key={href}>
-                <a
-                  href={href}
-                  aria-current={isActive ? 'true' : undefined}
-                  className="relative inline-flex min-h-11 items-center px-1 text-sm font-medium text-white/90 transition-colors hover:text-white after:absolute after:inset-x-1 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-coral after:transition-transform after:duration-(--duration-base) hover:after:scale-x-100 aria-[current=true]:text-white aria-[current=true]:after:scale-x-100 motion-reduce:transition-none motion-reduce:after:transition-none"
+        <nav aria-label="Main" className="hidden lg:block">
+          <ul className="flex items-center gap-1">
+            {navLinks.map((l) => (
+              <li key={l.to}>
+                <NavLink
+                  to={l.to}
+                  end={l.to === '/'}
+                  className={({ isActive }) =>
+                    `${linkBase} ${isActive ? 'text-fg' : 'text-fg-soft hover:text-fg'}`
+                  }
                 >
-                  {label}
-                </a>
+                  {({ isActive }) => (
+                    <>
+                      {l.label}
+                      {isActive && (
+                        <span aria-hidden="true" className="grad-bg absolute inset-x-3 bottom-1 h-0.5 rounded-full" />
+                      )}
+                    </>
+                  )}
+                </NavLink>
               </li>
-            )
-          })}
-        </ul>
-      </nav>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <span className="hidden sm:block">
+            <Button to={header.cta.to} className="h-10 px-5">
+              {header.cta.label}
+            </Button>
+          </span>
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className="flex h-11 w-11 items-center justify-center rounded-xl text-fg transition hover:bg-fg/10 lg:hidden motion-reduce:transition-none"
+          >
+            {open ? <X aria-hidden="true" size={22} /> : <Menu aria-hidden="true" size={22} />}
+          </button>
+        </div>
+      </div>
+
+      <MobileMenu open={open} onClose={() => setOpen(false)} />
     </header>
   )
 }

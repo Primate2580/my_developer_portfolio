@@ -10,44 +10,35 @@ const found = import.meta.glob('../../assets/profile.{jpg,jpeg,png,webp}', {
 })
 const photoUrl = Object.values(found)[0]
 
-// A soft, organic "blob" made with uneven border-radius values.
-const blob = 'rounded-[58%_42%_51%_49%/46%_55%_45%_54%]'
-
 const initials = site.name
   .split(' ')
   .map((w) => w[0])
   .join('')
 
-export default function Portrait({ className = '' }) {
+// Photo inside a blue -> pink gradient ring. shape="circle" (hero) or "card" (about page).
+export default function Portrait({ shape = 'circle', className = '' }) {
   const [failed, setFailed] = useState(false)
   const showPhoto = photoUrl && !failed
+  const round = shape === 'circle' ? 'rounded-full aspect-square' : 'rounded-[2rem] aspect-[4/5]'
 
   return (
-    <div className={`relative aspect-[4/5] ${className}`}>
-      {/* Coral outline, nudged down-right so it peeks out from behind the photo */}
-      <div
-        aria-hidden="true"
-        className={`absolute inset-0 translate-x-4 translate-y-4 border-2 border-coral ${blob}`}
-      />
-
-      <div className={`relative h-full w-full overflow-hidden ${blob}`}>
+    <div className={`grad-bg p-1 shadow-2xl shadow-brand-violet/30 ${round} ${className}`}>
+      <div className={`h-full w-full overflow-hidden bg-surface-solid ${shape === 'circle' ? 'rounded-full' : 'rounded-[1.75rem]'}`}>
         {showPhoto ? (
           <img
             src={photoUrl}
             alt={about.photoAlt}
             width="800"
-            height="1000"
-            loading="lazy"
+            height={shape === 'circle' ? '800' : '1000'}
             decoding="async"
             onError={() => setFailed(true)}
             className="h-full w-full object-cover"
           />
         ) : (
-          // Fallback: still announced as an image to screen readers
           <div
             role="img"
             aria-label={about.photoAlt}
-            className="flex h-full w-full items-center justify-center bg-linear-to-br from-violet via-magenta to-blue"
+            className="flex h-full w-full items-center justify-center bg-linear-to-br from-brand-blue via-brand-violet to-brand-pink"
           >
             <span aria-hidden="true" className="text-6xl font-extrabold tracking-tight text-white/90">
               {initials}

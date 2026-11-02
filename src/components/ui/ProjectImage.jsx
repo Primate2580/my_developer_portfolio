@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Screenshot area of a project panel. Three states:
+// Screenshot area of a project card. Three states:
 //  - loading : spinner while the image downloads
 //  - loaded  : the image fades in
 //  - fallback: gradient (no image set, or the file failed to load)
 const gradients = [
-  'from-violet via-magenta to-coral',
-  'from-blue via-violet to-magenta',
-  'from-cyan via-blue to-violet',
+  'from-brand-blue via-brand-violet to-brand-pink',
+  'from-sky-500 via-brand-blue to-brand-violet',
+  'from-brand-violet via-fuchsia-600 to-orange-400',
 ]
 
 export default function ProjectImage({ project, index }) {
@@ -35,17 +35,16 @@ export default function ProjectImage({ project, index }) {
   }
 
   return (
-    <div className="relative h-full w-full bg-white/5">
+    <div className="relative h-full w-full bg-fg/5">
       {state === 'loading' && (
-        <div data-spinner aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-          <span className="h-10 w-10 animate-spin rounded-full border-2 border-white/20 border-t-white motion-reduce:animate-none" />
+        <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
+          <span className="h-10 w-10 animate-spin rounded-full border-2 border-fg/20 border-t-fg motion-reduce:animate-none" />
         </div>
       )}
       <img
         ref={imgRef}
         src={project.image}
         alt={project.imageAlt ?? `Screenshot of ${project.title}`}
-        // width/height reserve the right shape before the file arrives (no layout shift)
         width="1200"
         height="750"
         loading="lazy"
@@ -53,7 +52,7 @@ export default function ProjectImage({ project, index }) {
         draggable="false"
         onLoad={() => setState('loaded')}
         onError={() => setState('fallback')}
-        className={`h-full w-full object-cover transition-opacity duration-(--duration-base) motion-reduce:transition-none ${state === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
+        className={`h-full w-full object-cover transition-opacity duration-400 motion-reduce:transition-none ${state === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   )

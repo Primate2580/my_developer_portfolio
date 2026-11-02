@@ -5,4 +5,6 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  // Tailwind v4 runs through its Vite plugin, so ignore any stray postcss.config.js in parent folders
+  css: { postcss: {} },
 })

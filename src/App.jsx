@@ -1,40 +1,30 @@
 import { MotionConfig } from 'framer-motion'
-import SkipLink from './components/ui/SkipLink'
-import DotRow from './components/ui/DotRow'
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Experience from './components/Experience'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import About from './pages/About'
+import Skills from './pages/Skills'
+import Projects from './pages/Projects'
+import Experience from './pages/Experience'
+import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 
+// One route per page. Every page renders inside <Layout> (header, background, footer).
 export default function App() {
   return (
-    // reducedMotion="user": scroll animations only fade (no sliding) for people who ask for less motion
+    // reducedMotion="user": people who ask for less motion get fades only (no sliding)
     <MotionConfig reducedMotion="user">
-      <SkipLink />
-      <Navigation />
-
-      {/* pl-(--rail-width): content starts exactly where the side rail ends */}
-      <main
-        id="main-content"
-        tabIndex={-1}
-        className="relative pl-(--rail-width) focus:outline-none"
-      >
-        {/* z-10 keeps the dots above the hero's background */}
-        <DotRow className="absolute left-(--rail-width) right-0 top-[calc(var(--header-h)+0.75rem)] z-10" />
-
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-
-      <Footer />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="skills" element={<Skills />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="experience" element={<Experience />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </MotionConfig>
   )
 }

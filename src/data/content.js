@@ -1,38 +1,57 @@
 // ======================================================================
 // ALL SITE TEXT LIVES HERE.
 // Search for "TODO" to find everything you still need to replace.
-// Components read from this file, so you never edit them to change copy.
+// Pages read from this file, so you never edit them to change copy.
 // ======================================================================
 
 export const site = {
   brand: 'primeswitch',
   name: 'Alabi Tosin Samson', // TODO: confirm how you want your name displayed
+  firstName: 'Alabi Tosin', // hero line 1
+  lastName: 'Samson', // hero line 2
   title: 'Web & Software Developer',
-  location: 'Nigeria', // TODO: add your city if you want it shown
-  email: 'TODO@your-email.com', // TODO: your real email
+  location: 'Ibadan Nigeria', // TODO: add your city if you want it shown
+  email: 'primate2580@mail.com', // TODO: your real email
 }
 
+// `to` is the page address. The header and footer both build their links from this list.
 export const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Work', href: '#work' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Skills', to: '/skills' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Experience', to: '/experience' },
+  { label: 'Contact', to: '/contact' },
 ]
 
+export const header = {
+  cta: { label: 'Hire Me', to: '/contact' },
+}
+
 export const hero = {
-  headline: 'I build the web.', // TODO: your headline (keep the full stop)
-  subtitle: 'Front-end developer, primeswitch.', // TODO
-  text: 'I design and build fast, accessible interfaces with React and Tailwind. Currently shipping client projects at HGSL.', // TODO: replace with your own two lines
-  primaryCta: { label: 'Explore more', href: '#work' },
-  secondaryCta: { label: 'Contact', href: '#contact' },
-  numeral: '01',
-  verticalLabel: 'Portfolio',
-  meta: 'React - Tailwind - Django', // TODO
+  status: 'Open to new projects', // TODO: or "Available for freelance work"
+  greeting: "Hey there! I'm",
+  // The typing line cycles through these roles
+  introPrefix: "I'm a",
+  roles: ['Creative Coder', 'Front-end Developer', 'React Developer'], // TODO
+  text: 'I design and build fast, accessible interfaces with React and Tailwind, with Python and Django behind them. Currently shipping client projects at HGSL.', // TODO: replace with your own two lines
+  // Colourful pills under the paragraph. `color` picks the pill colour (see Pill.jsx)
+  tech: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind', 'React', 'Python', 'Django'],
+  primaryCta: { label: 'View My Work', to: '/projects' },
+  secondaryCta: { label: "Let's Talk", to: '/contact' },
+  followLabel: 'Follow me:',
+  // Two small floating cards next to the portrait
+  stats: [
+    { value: 'React', label: 'Main stack' },
+    { value: 'HGSL', label: 'Working at' },
+  ],
+  // The code card next to the portrait. Edit the lines, keep the shape.
+  code: { name: 'Tosin', skills: ['React', 'Django'], passion: 'Building the web' }, // TODO
 }
 
 export const about = {
-  label: 'About',
-  numeral: '02',
+  title: 'About me',
+  intro: 'A developer who learns by shipping real projects.',
   statement: ['I turn ideas into', 'fast, polished websites.'], // TODO: your two-line statement
   bio: "I'm a web developer based in Nigeria. I build interfaces with React and Tailwind and back ends with Python and Django. I like work where design and code meet, and I learn best by shipping real projects.", // TODO: rewrite in your own words
   facts: [
@@ -42,12 +61,16 @@ export const about = {
   ],
   // Your photo goes in src/assets/profile.jpg (see the README in that folder)
   photoAlt: 'Portrait of Alabi Tosin Samson', // TODO: describe your photo, e.g. "Tosin smiling, wearing a blue shirt"
+  ctas: {
+    primary: { label: 'See my projects', to: '/projects' },
+    secondary: { label: 'Download CV', href: '/cv.pdf', filename: 'Alabi-Tosin-Samson-CV.pdf' },
+  },
 }
 
 export const skills = {
-  label: 'Skills',
-  numeral: '03',
-  // icon: 'monitor' | 'server' | 'wrench' (see iconMap in components/Skills.jsx)
+  title: 'Skills',
+  intro: 'The tools I use to design, build and ship.',
+  // icon: 'monitor' | 'server' | 'wrench' (see iconMap in pages/Skills.jsx)
   groups: [
     { title: 'Front-end', icon: 'monitor', items: ['React', 'JavaScript', 'Tailwind CSS', 'HTML & CSS'] }, // TODO
     { title: 'Back-end', icon: 'server', items: ['Python', 'Django'] }, // TODO
@@ -56,9 +79,10 @@ export const skills = {
 }
 
 export const projects = {
-  label: 'Work',
-  numeral: '04',
-  cta: 'View project',
+  title: 'Projects',
+  intro: 'A selection of things I have built.',
+  live: 'Live site',
+  code: 'Code',
   // Screenshots: save them in /public/projects and set `image` below (1200 x 750 px works best).
   // Leave `image` empty to show a gradient placeholder instead.
   items: [
@@ -96,9 +120,9 @@ export const projects = {
 }
 
 export const experience = {
-  label: 'Experience',
-  numeral: '05',
-  // Newest first. `current: true` fills the timeline dot in coral.
+  title: 'Experience',
+  intro: 'Where I have worked and learned.',
+  // Newest first. `current: true` fills the timeline dot with the gradient.
   items: [
     {
       role: 'Web / Software Developer',
@@ -127,10 +151,10 @@ export const experience = {
 }
 
 export const contact = {
-  label: 'Contact',
-  numeral: '06',
-  headline: "Let's talk.",
-  text: "Have a project in mind, or just want to say hello? Send me a message and I'll get back to you.", // TODO
+  title: "Let's talk",
+  intro: "Have a project in mind, or just want to say hello? Send me a message and I'll get back to you.", // TODO
+  emailLabel: 'Email me directly',
+  socialsLabel: 'Find me online',
   form: {
     intro: 'All fields are required.',
     name: 'Name',
@@ -146,14 +170,20 @@ export const contact = {
   },
 }
 
-// icon: 'github' | 'linkedin' | 'globe' (see iconMap in components/Contact.jsx)
+// icon: 'github' | 'linkedin' | 'globe' (see components/ui/socialIconMap.js)
 export const socials = [
   { label: 'GitHub', handle: 'Primate2580', icon: 'github', href: 'https://github.com/Primate2580' },
-  { label: 'LinkedIn', handle: 'Alabi Tosin Samson', icon: 'linkedin', href: 'https://www.linkedin.com/in/TODO' }, // TODO: your LinkedIn URL
-  { label: 'Website', icon: 'globe', href: 'https://example.com' }, // TODO: swap for X, YouTube, etc. (or delete this line)
+  { label: 'LinkedIn', handle: 'Alabi Tosin Samson', icon: 'linkedin', href: 'https://www.linkedin.com/in/alabi-tosin-samson-07b2a9210/' },
+  { label: 'Website', handle: 'primeswitch.com', icon: 'globe', href: 'https://primeswitch.com' },
 ]
 
+export const notFound = {
+  title: 'Page not found',
+  text: "That page doesn't exist. It may have moved, or the address has a typo.",
+  cta: { label: 'Back to home', to: '/' },
+}
+
 export const footer = {
-  meta: 'Built with React - Tailwind - Vite',
+  meta: 'Built with React, Tailwind and Vite',
   rights: 'All rights reserved.',
 }

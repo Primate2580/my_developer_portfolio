@@ -1,93 +1,87 @@
 @import "tailwindcss";
 
+/* Lets us write dark:text-... utilities that follow our [data-theme] switch */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* ------------------------------------------------------------------
-   Design tokens. Every --color-* here becomes a utility automatically:
-   bg-violet-deep, text-coral, border-orange, from-magenta, etc.
+   Theme colours. Dark is the default; [data-theme="light"] swaps the values.
+   Utilities: bg-bg, bg-surface, text-fg, text-fg-soft, text-muted, border-line, text-accent
 ------------------------------------------------------------------- */
+:root {
+  --bg: #0f1626;
+  --surface: rgb(255 255 255 / 0.045);
+  --surface-solid: #172033;
+  --fg: #ffffff;
+  --fg-soft: #cbd5e1;
+  --muted: #94a3b8;
+  --line: rgb(255 255 255 / 0.1);
+  --accent: #38bdf8;
+  --blob-1: rgb(147 51 234 / 0.38);
+  --blob-2: rgb(37 99 235 / 0.3);
+  --blob-3: rgb(219 39 119 / 0.2);
+  --star-opacity: 1;
+  --header-h: 4.5rem;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #f3f5fb;
+  --surface: rgb(255 255 255 / 0.75);
+  --surface-solid: #ffffff;
+  --fg: #0f172a;
+  --fg-soft: #334155;
+  --muted: #5b6b82;
+  --line: rgb(15 23 42 / 0.12);
+  --accent: #0369a1;
+  --blob-1: rgb(168 85 247 / 0.22);
+  --blob-2: rgb(59 130 246 / 0.2);
+  --blob-3: rgb(236 72 153 / 0.14);
+  --star-opacity: 0;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-solid: var(--surface-solid);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+}
+
 @theme {
-  /* Colors */
-  --color-ink: #12002b;
-  --color-violet-deep: #4b0082;
-  --color-violet: #8a0a9e;
-  --color-magenta: #e0189b;
-  --color-coral: #ff5a6a;
-  --color-orange: #ff9a62;
-  --color-cyan: #37d5ff;
-  --color-blue: #2f5bd8;
-  --color-lilac: #a89bff;
-  --color-rail: rgba(18, 0, 43, 0.65);
+  --color-brand-blue: #2563eb;
+  --color-brand-violet: #7c3aed;
+  --color-brand-pink: #db2777;
 
-  /* Fonts */
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Bebas Neue", "Oswald", Impact, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Radii: small for buttons, large only for soft sphere shapes */
-  --radius-btn: 4px;
-  --radius-sphere: 9999px;
-
-  /* Motion: one easing and a default speed for every `transition-*` utility */
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
   --default-transition-duration: 200ms;
   --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Skills marquee: slides the track left by half its width, then loops */
-  --animate-marquee: marquee 45s linear infinite;
-  @keyframes marquee {
-    to {
-      transform: translate3d(-50%, 0, 0);
-    }
+  --animate-float: float 7s ease-in-out infinite;
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -10px, 0); }
   }
-
-  /* Slow float for the hero spheres (duration/delay are set per sphere) */
-  --animate-sphere-float: sphere-float 8s ease-in-out infinite;
-  @keyframes sphere-float {
-    0%,
-    100% {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-    50% {
-      transform: translate3d(0, -14px, 0) scale(1.03);
-    }
+  --animate-blink: blink 1s steps(1) infinite;
+  @keyframes blink {
+    50% { opacity: 0; }
   }
 }
 
-/* ------------------------------------------------------------------
-   Global base styles
------------------------------------------------------------------- */
 @layer base {
-  /* Layout sizes shared by the header, the side rail and <main>.
-     Change them here and everything stays aligned. */
-  :root {
-    /* Motion speeds. Use as duration-(--duration-base) etc. JS twins: src/lib/motion.js */
-    --duration-fast: 200ms;
-    --duration-base: 400ms;
-    --duration-slow: 700ms;
-
-    --header-h: 4rem;
-    --rail-width: 2.75rem; /* 44px on mobile */
-  }
-  @media (min-width: 48rem) {
-    :root {
-      --rail-width: 4rem; /* 64px from md up */
-    }
-  }
-
   html {
     scroll-behavior: smooth;
-    /* Leaves room for the fixed top bar when jumping to anchors */
     scroll-padding-top: var(--header-h);
     -webkit-text-size-adjust: 100%;
   }
-
-  /* People who ask for less motion get none: this is a safety net on top of the
-     per-component motion-reduce: classes (and framer-motion's own reducedMotion setting). */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -98,58 +92,99 @@
   body {
     margin: 0;
     min-height: 100vh;
-    background-color: var(--color-ink);
-    color: #fff;
+    background-color: var(--bg);
+    color: var(--fg);
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.7;
-    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 300ms, color 300ms;
   }
+  ::selection { background-color: var(--color-brand-violet); color: #fff; }
 
-  ::selection {
-    background-color: var(--color-coral);
-    color: #fff;
-  }
-
-  /* Type scale: fluid so it works from 360px to 1920px without breakpoints */
   h1 {
-    font-size: clamp(3rem, 9vw, 7rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.02em;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
   }
-  h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
-  h3 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 600;
-    line-height: 1.25;
-  }
-  p {
-    max-width: 65ch;
-  }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+  h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
+  p { max-width: 65ch; }
 
-  /* Visible focus for keyboard users */
   :focus-visible {
-    outline: 2px solid var(--color-coral);
+    outline: 2px solid #38bdf8;
     outline-offset: 3px;
   }
+  [data-theme="light"] :focus-visible { outline-color: var(--color-brand-blue); }
 }
 
-/* ------------------------------------------------------------------
-   Hero background (Phase 2)
------------------------------------------------------------------- */
 @layer components {
-  .hero-bg {
-    background:
-      radial-gradient(55% 60% at 78% 55%, rgb(224 24 155 / 0.4), transparent 70%),
-      radial-gradient(45% 50% at 12% 100%, rgb(47 91 216 / 0.3), transparent 70%),
-      linear-gradient(120deg, var(--color-violet-deep) 0%, #6a0a8e 50%, var(--color-violet) 100%);
+  /* Blue -> pink gradient, used on primary buttons, rings and big numbers */
+  .grad-bg { background-image: linear-gradient(90deg, #2563eb 0%, #7c3aed 55%, #db2777 100%); }
+  .grad-text {
+    background-image: linear-gradient(90deg, #60a5fa 0%, #c084fc 55%, #f472b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  [data-theme="light"] .grad-text {
+    background-image: linear-gradient(90deg, #2563eb 0%, #7c3aed 55%, #db2777 100%);
+  }
+  .glass {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  /* Page background: three blurred colour glows + a sprinkle of tiny stars */
+  .bg-glow-1 { background: radial-gradient(closest-side, var(--blob-1), transparent); }
+  .bg-glow-2 { background: radial-gradient(closest-side, var(--blob-2), transparent); }
+  .bg-glow-3 { background: radial-gradient(closest-side, var(--blob-3), transparent); }
+  .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    border-radius: 9999px;
+    opacity: var(--star-opacity);
+    box-shadow:
+    43vw 22vh 0 0 rgb(255 255 255 / 0.43),
+    8vw 12vh 0 0 rgb(255 255 255 / 0.62),
+    14vw 49vh 0 0 rgb(255 255 255 / 0.51),
+    66vw 30vh 0 0 rgb(255 255 255 / 0.27),
+    57vw 56vh 0 0 rgb(255 255 255 / 0.28),
+    13vw 73vh 0 0 rgb(255 255 255 / 0.44),
+    74vw 18vh 0 0 rgb(255 255 255 / 0.68),
+    82vw 83vh 0 0 rgb(255 255 255 / 0.51),
+    9vw 76vh 0 0 rgb(255 255 255 / 0.51),
+    8vw 31vh 0 0 rgb(255 255 255 / 0.27),
+    19vw 40vh 0 0 rgb(255 255 255 / 0.44),
+    71vw 18vh 0 0 rgb(255 255 255 / 0.51),
+    73vw 90vh 0 0 rgb(255 255 255 / 0.33),
+    76vw 76vh 0 0 rgb(255 255 255 / 0.54),
+    49vw 15vh 0 0 rgb(255 255 255 / 0.5),
+    10vw 75vh 0 0 rgb(255 255 255 / 0.28),
+    28vw 66vh 0 0 rgb(255 255 255 / 0.56),
+    56vw 43vh 0 0 rgb(255 255 255 / 0.46),
+    60vw 49vh 0 0 rgb(255 255 255 / 0.38),
+    25vw 92vh 0 0 rgb(255 255 255 / 0.6),
+    12vw 76vh 0 0 rgb(255 255 255 / 0.39),
+    65vw 46vh 0 0 rgb(255 255 255 / 0.58),
+    38vw 80vh 0 0 rgb(255 255 255 / 0.69),
+    17vw 68vh 0 0 rgb(255 255 255 / 0.44),
+    98vw 46vh 0 0 rgb(255 255 255 / 0.32),
+    64vw 56vh 0 0 rgb(255 255 255 / 0.27),
+    87vw 12vh 0 0 rgb(255 255 255 / 0.59),
+    75vw 43vh 0 0 rgb(255 255 255 / 0.4),
+    46vw 79vh 0 0 rgb(255 255 255 / 0.47),
+    60vw 11vh 0 0 rgb(255 255 255 / 0.63),
+    36vw 63vh 0 0 rgb(255 255 255 / 0.56),
+    10vw 10vh 0 0 rgb(255 255 255 / 0.58),
+    41vw 85vh 0 0 rgb(255 255 255 / 0.51),
+    89vw 60vh 0 0 rgb(255 255 255 / 0.38);
   }
 }

@@ -132,6 +132,27 @@
   [data-theme="light"] .grad-text {
     background-image: linear-gradient(90deg, #2563eb 0%, #7c3aed 55%, #db2777 100%);
   }
+  /* Transparent button with a blue -> pink gradient border. The gradient lives on a
+     pseudo-element that is masked down to a thin ring, so the middle stays see-through. */
+  .btn-grad-outline {
+    position: relative;
+    background: transparent;
+  }
+  .btn-grad-outline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(90deg, #3b82f6 0%, #a855f7 55%, #ec4899 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+  [data-theme="light"] .btn-grad-outline::before {
+    background: linear-gradient(90deg, #2563eb 0%, #7c3aed 55%, #db2777 100%);
+  }
   .glass {
     background: var(--surface);
     border: 1px solid var(--line);

@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
 
 // One button for the whole site. It renders a router <Link> (to), a normal <a> (href), or a <button>.
-//   variant="primary": blue -> pink gradient      variant="outline": glass with a border
+//   variant="primary": gradient outline      variant="outline": plain outline (both transparent)
 const base =
   'group inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition motion-reduce:transition-none'
 const variants = {
+  // transparent, with a blue -> pink gradient outline (see .btn-grad-outline in index.css)
   primary:
-    'grad-bg text-white shadow-lg shadow-brand-violet/25 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-violet/40 motion-reduce:hover:translate-y-0',
-  outline: 'glass text-fg hover:border-fg/40 hover:bg-fg/5',
+    'btn-grad-outline text-fg hover:-translate-y-0.5 hover:bg-fg/5 hover:shadow-lg hover:shadow-brand-violet/25 motion-reduce:hover:translate-y-0',
+  // transparent, with a plain outline
+  outline: 'border border-line text-fg hover:border-fg/40 hover:bg-fg/5',
 }
 
 export default function Button({ variant = 'primary', to, href, className = '', children, ...rest }) {

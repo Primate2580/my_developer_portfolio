@@ -36,7 +36,7 @@ export const hero = {
   roles: ['Creative Coder', 'Front-end Developer', 'React Developer'], // TODO
   text: 'I design and build fast, accessible interfaces with React and Tailwind, with Python and Django behind them. Currently shipping client projects at HGSL.', // TODO: replace with your own two lines
   // Colourful pills under the paragraph. `color` picks the pill colour (see Pill.jsx)
-  tech: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind', 'React', 'Python', 'Django'],
+  tech: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind', 'React', 'WordPress', 'Node.js', 'Python', 'Django'],
   primaryCta: { label: 'View My Work', to: '/projects' },
   secondaryCta: { label: "Let's Talk", to: '/contact' },
   followLabel: 'Follow me:',
@@ -47,6 +47,35 @@ export const hero = {
   ],
   // The code card next to the portrait. Edit the lines, keep the shape.
   code: { name: 'Tosin', skills: ['React', 'Django'], passion: 'Building the web' }, // TODO
+}
+
+// Short "What I do" strip under the hero on the home page. icon: 'globe' | 'monitor' | 'server'
+export const services = {
+  title: 'What I do',
+  items: [
+    {
+      icon: 'monitor',
+      title: 'Websites',
+      text: 'Fast, responsive sites for businesses and portfolios, built with React and Tailwind.', // TODO
+    },
+    {
+      icon: 'globe',
+      title: 'WordPress sites',
+      text: 'Custom WordPress builds you can update yourself, without touching code.', // TODO
+    },
+    {
+      icon: 'server',
+      title: 'Web apps',
+      text: 'Full-stack apps with Node.js, Express and MongoDB, or Firebase when you need to move fast.', // TODO
+    },
+  ],
+}
+
+// Bar shown at the bottom of every page except Contact
+export const cta = {
+  title: 'Have a project in mind?',
+  text: "Tell me what you're building and I'll get back to you.", // TODO
+  button: { label: "Let's talk", to: '/contact' },
 }
 
 export const about = {
@@ -72,8 +101,8 @@ export const skills = {
   intro: 'The tools I use to design, build and ship.',
   // icon: 'monitor' | 'server' | 'wrench' (see iconMap in pages/Skills.jsx)
   groups: [
-    { title: 'Front-end', icon: 'monitor', items: ['React', 'JavaScript', 'Tailwind CSS', 'HTML & CSS'] }, // TODO
-    { title: 'Back-end', icon: 'server', items: ['Python', 'Django'] }, // TODO
+    { title: 'Front-end', icon: 'monitor', items: ['React', 'JavaScript', 'Tailwind CSS', 'HTML & CSS', 'WordPress'] }, // TODO
+    { title: 'Back-end', icon: 'server', items: ['Node.js', 'Express', 'MongoDB', 'Firebase', 'Python', 'Django'] }, // TODO
     { title: 'Tools', icon: 'wrench', items: ['Git & GitHub', 'Vite', 'Supabase'] }, // TODO
   ],
 }

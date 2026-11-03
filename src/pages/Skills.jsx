@@ -23,7 +23,7 @@ export default function Skills() {
                 <Icon size={22} />
               </span>
               <h2 className="text-xl">{g.title}</h2>
-              <ul className="mt-5 flex flex-wrap gap-2">
+              <ul className="mt-5 flex flex-wrap gap-2.5">
                 {g.items.map((item, j) => (
                   <li key={item}>
                     <Pill index={j}>{item}</Pill>

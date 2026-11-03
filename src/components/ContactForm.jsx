@@ -209,13 +209,13 @@ export default function ContactForm() {
             // aria-disabled (not disabled) keeps it focusable and lets us explain why
             aria-disabled={sending || !connected ? 'true' : undefined}
             aria-describedby={!connected ? 'form-notice' : undefined}
-            className="grad-bg inline-flex h-12 w-full items-center justify-center gap-3 rounded-xl px-8 text-sm font-semibold text-white shadow-lg shadow-brand-violet/25 transition hover:-translate-y-0.5 aria-disabled:cursor-not-allowed aria-disabled:opacity-60 aria-disabled:hover:translate-y-0 motion-reduce:transition-none sm:w-auto"
+            className="btn-grad-outline inline-flex h-12 w-full items-center justify-center gap-3 rounded-xl px-8 text-sm font-semibold text-fg transition hover:-translate-y-0.5 hover:bg-fg/5 aria-disabled:cursor-not-allowed aria-disabled:opacity-60 aria-disabled:hover:translate-y-0 motion-reduce:transition-none sm:w-auto"
           >
             {sending ? (
               <>
                 <span
                   aria-hidden="true"
-                  className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white motion-reduce:animate-none"
+                  className="h-4 w-4 animate-spin rounded-full border-2 border-fg/30 border-t-fg motion-reduce:animate-none"
                 />
                 {f.sending}
               </>

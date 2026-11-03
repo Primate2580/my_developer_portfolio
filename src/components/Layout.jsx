@@ -4,13 +4,17 @@ import { motion } from 'framer-motion'
 import { DURATION, EASE } from '../lib/motion'
 import Background from './Background'
 import Header from './Header'
+import CtaBand from './CtaBand'
 import Footer from './Footer'
+import { navLinks } from '../data/content'
 
 // Wraps every page: background, header, the page itself, footer.
 export default function Layout() {
   const { pathname } = useLocation()
   const mainRef = useRef(null)
   const first = useRef(true)
+  // Contact bar on every real page except Contact itself and the 404 page
+  const showCta = pathname !== '/contact' && navLinks.some((l) => l.to === pathname)
 
   // On every page change: jump to the top and move keyboard focus to the page,
   // so screen-reader and keyboard users start at the new content.
@@ -45,6 +49,7 @@ export default function Layout() {
         </motion.div>
       </main>
 
+      {showCta && <CtaBand />}
       <Footer />
     </div>
   )

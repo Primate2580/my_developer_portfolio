@@ -4,6 +4,7 @@ import { site } from '../data/content'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { useTypewriter } from '../hooks/useTypewriter'
 import Button from '../components/ui/Button'
+import Services from '../components/Services'
 import Pill from '../components/ui/Pill'
 import Portrait from '../components/ui/Portrait'
 import SocialLinks from '../components/ui/SocialLinks'
@@ -71,6 +72,7 @@ export default function Home() {
   const typed = useTypewriter(hero.roles)
 
   return (
+    <>
     <section className="mx-auto grid max-w-7xl items-center lg:min-h-svh gap-10 px-5 pb-16 pt-[calc(var(--header-h)+2rem)] md:px-8 lg:grid-cols-2 lg:gap-6">
       {/* ---------- Left: words ---------- */}
       <div>
@@ -100,7 +102,7 @@ export default function Home() {
 
         <p className="mt-6 max-w-xl text-fg-soft">{hero.text}</p>
 
-        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
+        <ul className="mt-6 flex flex-wrap gap-2.5" aria-label="Technologies">
           {hero.tech.map((t, i) => (
             <li key={t}>
               <Pill index={i}>{t}</Pill>
@@ -155,5 +157,7 @@ export default function Home() {
         </Floating>
       </div>
     </section>
+    <Services />
+    </>
   )
 }

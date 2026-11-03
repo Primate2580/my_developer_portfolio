@@ -26,7 +26,7 @@ export default function Projects() {
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="text-xl">{p.title}</h2>
                 <p className="mt-2 text-sm text-fg-soft">{p.description}</p>
-                <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${p.title} technologies`}>
+                <ul className="mt-4 flex flex-wrap gap-2.5" aria-label={`${p.title} technologies`}>
                   {p.tags.map((t, j) => (
                     <li key={t}>
                       <Pill index={i + j}>{t}</Pill>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { header, navLinks } from '../data/content'
 import Button from './ui/Button'
@@ -11,6 +11,9 @@ const linkBase =
   'relative inline-flex min-h-11 items-center px-3 text-sm font-medium transition-colors motion-reduce:transition-none'
 
 export default function Header() {
+  const { pathname } = useLocation()
+  // The home page has its own list on the left, so these links show on the other pages only
+  const showLinks = pathname !== '/'
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -31,30 +34,32 @@ export default function Header() {
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-5 md:px-8">
         <Logo onClick={() => setOpen(false)} />
 
-        <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {navLinks.map((l) => (
-              <li key={l.to}>
-                <NavLink
-                  to={l.to}
-                  end={l.to === '/'}
-                  className={({ isActive }) =>
-                    `${linkBase} ${isActive ? 'text-fg' : 'text-fg-soft hover:text-fg'}`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      {l.label}
-                      {isActive && (
-                        <span aria-hidden="true" className="grad-bg absolute inset-x-3 bottom-1 h-0.5 rounded-full" />
-                      )}
-                    </>
-                  )}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {showLinks && (
+          <nav aria-label="Main" className="hidden lg:block">
+            <ul className="flex items-center gap-1">
+              {navLinks.map((l) => (
+                <li key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    end={l.to === '/'}
+                    className={({ isActive }) =>
+                      `${linkBase} ${isActive ? 'text-fg' : 'text-fg-soft hover:text-fg'}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        {l.label}
+                        {isActive && (
+                          <span aria-hidden="true" className="grad-bg absolute inset-x-3 bottom-1 h-0.5 rounded-full" />
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
         <div className="flex items-center gap-2">
           <ThemeToggle />

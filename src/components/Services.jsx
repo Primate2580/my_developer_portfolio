@@ -1,29 +1,28 @@
 import { Globe, Monitor, Server } from 'lucide-react'
 import { services } from '../data/content'
-import Reveal from './ui/Reveal'
 
 // content.js names an icon; this maps the name to the component.
 const iconMap = { globe: Globe, monitor: Monitor, server: Server }
 
-// Three short cards under the hero on the home page.
+// "What I do": three short rows, shown at the bottom of the left panel on the home page.
 export default function Services() {
   return (
-    <section aria-labelledby="services-title" className="mx-auto max-w-7xl px-5 pb-20 pt-4 md:px-8">
-      <h2 id="services-title" className="mb-8 text-2xl md:text-3xl">
+    <section aria-labelledby="services-title" className="mt-10 pb-4">
+      <h2 id="services-title" className="mb-4 text-xl">
         {services.title}
       </h2>
-      <ul className="grid gap-6 md:grid-cols-3">
-        {services.items.map((item, i) => {
+      <ul className="space-y-3">
+        {services.items.map((item) => {
           const Icon = iconMap[item.icon] ?? Monitor
           return (
-            <li key={item.title}>
-              <Reveal delay={i * 0.08} className="glass h-full rounded-3xl p-6 md:p-8">
-                <span aria-hidden="true" className="grad-bg mb-5 flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg shadow-brand-violet/30">
-                  <Icon size={22} />
-                </span>
-                <h3>{item.title}</h3>
-                <p className="mt-2 text-sm text-fg-soft">{item.text}</p>
-              </Reveal>
+            <li key={item.title} className="flex gap-4 rounded-2xl border border-line p-4">
+              <span aria-hidden="true" className="grad-bg flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white">
+                <Icon size={18} />
+              </span>
+              <div>
+                <h3 className="text-base">{item.title}</h3>
+                <p className="mt-1 text-sm text-fg-soft">{item.text}</p>
+              </div>
             </li>
           )
         })}

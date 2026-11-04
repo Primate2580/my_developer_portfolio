@@ -1,4 +1,6 @@
-import { ArrowRight, MessageCircle } from 'lucide-react'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight, ChevronDown, MessageCircle } from 'lucide-react'
 import { hero, site } from '../data/content'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { useScrollSpy } from '../hooks/useScrollSpy'
@@ -12,6 +14,9 @@ import { AboutCover, ContactCover, ExperienceCover, ProjectsCover, SkillsCover }
 import GithubActivity from '../components/home/GithubActivity'
 import HomeNav from '../components/home/HomeNav'
 
+// The label on the button that shows and hides the tech stack pills.
+const TECH_LABEL = 'Tech stack'
+
 // Defined outside the component so the list never changes between renders.
 const SECTION_IDS = ['section-about', 'section-skills', 'section-projects', 'section-experience', 'section-github', 'section-contact']
 
@@ -21,13 +26,14 @@ export default function Home() {
   usePageTitle('')
   const typed = useTypewriter(hero.roles)
   const active = useScrollSpy(SECTION_IDS)
+  const [showTech, setShowTech] = useState(false)
 
   return (
     <>
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] items-start gap-10 px-5 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
         {/* ---------- Left: stays in place while the right side scrolls ---------- */}
-        <aside className="pt-[calc(var(--header-h)+2rem)] lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:overflow-y-auto lg:pb-4 lg:pt-(--header-h) lg:[scrollbar-width:none]">
-          {/* my-auto centres this block when there is room, and lets it scroll when there is not */}
+        <aside className="pt-[calc(var(--header-h)+2rem)] lg:sticky lg:top-(--header-h) lg:flex lg:h-[calc(100svh-var(--header-h))] lg:flex-col lg:overflow-y-auto lg:overscroll-contain lg:pb-4 lg:pl-1 lg:pr-2 lg:pt-3 lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
+          {/* The whole left side scrolls by itself. my-auto centres this block when there is room. */}
           <div className="lg:my-auto">
           <div className="flex items-center gap-4">
             <Portrait className="w-16 shrink-0" />
@@ -58,13 +64,40 @@ export default function Home() {
 
           <p className="mt-3 max-w-lg text-fg-soft">{hero.text}</p>
 
-          <ul className="mt-4 flex flex-wrap gap-2.5" aria-label="Technologies">
-            {hero.tech.map((t, i) => (
-              <li key={t}>
-                <Pill index={i}>{t}</Pill>
-              </li>
-            ))}
-          </ul>
+          <button
+            type="button"
+            onClick={() => setShowTech((v) => !v)}
+            aria-expanded={showTech}
+            aria-controls="tech-stack-list"
+            className="mt-4 inline-flex h-10 items-center gap-2 rounded-xl border border-line px-4 text-sm font-semibold text-fg transition hover:border-fg/40 hover:bg-fg/5 motion-reduce:transition-none"
+          >
+            {TECH_LABEL}
+            <ChevronDown
+              aria-hidden="true"
+              size={16}
+              className={`transition-transform duration-300 motion-reduce:transition-none ${showTech ? 'rotate-180' : ''}`}
+            />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {showTech && (
+              <motion.ul
+                id="tech-stack-list"
+                aria-label="Technologies"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-wrap gap-2.5 overflow-hidden pt-4"
+              >
+                {hero.tech.map((t, i) => (
+                  <li key={t}>
+                    <Pill index={i}>{t}</Pill>
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-4">
             <div className="flex flex-wrap gap-3">
@@ -80,9 +113,11 @@ export default function Home() {
             <SocialLinks aria-label={hero.followLabel} />
           </div>
 
-          <div className="mt-5 hidden [@media(min-height:840px)]:block">
+          <div className="mt-6">
             <HomeNav active={active} />
           </div>
+
+          <Services />
           </div>
         </aside>
 
@@ -96,8 +131,6 @@ export default function Home() {
           <ContactCover />
         </div>
       </div>
-
-      <Services />
     </>
   )
 }

@@ -46,13 +46,13 @@ export default function ProjectImage({ project, index }) {
         src={project.image}
         alt={project.imageAlt ?? `Screenshot of ${project.title}`}
         width="1200"
-        height="750"
+        height="600"
         loading="lazy"
         decoding="async"
         draggable="false"
         onLoad={() => setState('loaded')}
         onError={() => setState('fallback')}
-        className={`h-full w-full object-cover transition-opacity duration-400 motion-reduce:transition-none ${state === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
+        className={`h-full w-full object-cover object-top transition-opacity duration-400 motion-reduce:transition-none ${state === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   )

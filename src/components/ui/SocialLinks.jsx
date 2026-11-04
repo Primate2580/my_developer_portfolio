@@ -2,9 +2,9 @@ import { socials } from '../../data/content'
 import { iconMap } from './socialIconMap'
 
 // Row of round icon buttons (hero + footer). Each opens in a new tab.
-export default function SocialLinks({ className = '' }) {
+export default function SocialLinks({ className = '', ...rest }) {
   return (
-    <ul className={`flex items-center gap-2 ${className}`}>
+    <ul className={`flex items-center gap-2 ${className}`} {...rest}>
       {socials.map((s) => {
         const Icon = iconMap[s.icon]
         return (

@@ -107,71 +107,138 @@ export const skills = {
   ],
 }
 
+// ----------------------------------------------------------------------------
+// ONE link for every "Code" button. Right now it opens your GitHub repositories page.
+// NOTE: that address only works while you are logged in to GitHub. Visitors may see an error.
+// Better: point each project's `code` at its own repo (https://github.com/Primate2580/repo-name),
+// or change this one line to https://github.com/Primate2580?tab=repositories
+// ----------------------------------------------------------------------------
+const REPOS = 'https://github.com/Primate2580?tab=repositories'
+
+// ============================================================================
+// HOW TO ADD A PROJECT (no code changes needed):
+//   1. Take a screenshot of the project, save it as a .webp or .jpg in public/projects/
+//      (about 1200 x 600 px, under 200 KB). Example: public/projects/my-app.webp
+//   2. Copy the template below, paste it at the TOP of `items`, and fill it in.
+//   3. Save. The page updates by itself (restart `npm run dev` only if it does not).
+//
+//   {
+//     id: '06',                              // any unique text; shown on the gradient if no image
+//     title: 'My App',
+//     description: 'One or two short sentences: what it does and who it is for.',
+//     tags: ['React', 'Tailwind'],           // shown as coloured pills
+//     image: '/projects/my-app.webp',        // '' = gradient placeholder
+//     imageAlt: 'Screenshot of My App showing the dashboard', // describe what is visible
+//     live: 'https://my-app.vercel.app',     // '' = the "Live site" button is hidden
+//     code: REPOS,                           // or 'https://github.com/Primate2580/my-app'
+//   },
+//
+// To remove a project, delete its whole { ... }, block. To reorder, move the blocks.
+// ============================================================================
 export const projects = {
   title: 'Projects',
   intro: 'A selection of things I have built.',
   live: 'Live site',
   code: 'Code',
-  // Screenshots: save them in /public/projects and set `image` below (1200 x 750 px works best).
-  // Leave `image` empty to show a gradient placeholder instead.
   items: [
     {
       id: '01',
-      title: 'Project One', // TODO
-      description: 'A short one-line description of what it does and why it matters.', // TODO
-      tags: ['React', 'Tailwind'],
-      image: '', // TODO: '/projects/project-one.jpg'
-      imageAlt: 'Screenshot of Project One', // TODO: describe what the screenshot shows
-      live: 'https://example.com', // TODO: live URL
-      code: 'https://github.com/Primate2580', // TODO: repository URL
+      title: 'LABOD Concepts',
+      description: 'Multi-page portfolio website for an architecture studio in Lagos, with project galleries and a full-screen menu.',
+      tags: ['React', 'Vite', 'Tailwind'],
+      image: '/projects/labod.webp',
+      imageAlt: 'LABOD Concepts home page: a lit modern pod house at dusk with the studio name in large white letters',
+      live: 'https://labod-concepts.vercel.app/',
+      code: REPOS,
     },
     {
       id: '02',
-      title: 'Project Two', // TODO
-      description: 'A short one-line description of what it does and why it matters.', // TODO
-      tags: ['Django', 'Python'],
-      image: '', // TODO: '/projects/project-two.jpg'
-      imageAlt: 'Screenshot of Project Two', // TODO
-      live: 'https://example.com', // TODO
-      code: 'https://github.com/Primate2580', // TODO
+      title: 'Tech.Care',
+      description: 'Patient dashboard that loads its data from an API: a patient list, blood pressure history chart and vital signs.',
+      tags: ['React', 'Tailwind', 'Vite', 'API'],
+      image: '/projects/tech-care.webp',
+      imageAlt: 'Tech.Care dashboard with a patient list, a blood pressure chart and heart, temperature and respiratory cards',
+      live: 'https://tech-care-two-ashen.vercel.app/patients/jessica-taylor',
+      code: REPOS,
     },
     {
       id: '03',
-      title: 'Project Three', // TODO
-      description: 'A short one-line description of what it does and why it matters.', // TODO
-      tags: ['JavaScript', 'Supabase'],
-      image: '', // TODO: '/projects/project-three.jpg'
-      imageAlt: 'Screenshot of Project Three', // TODO
-      live: 'https://example.com', // TODO
-      code: 'https://github.com/Primate2580', // TODO
+      title: 'Budget Tracker',
+      description: 'Multi-page budget tracker in naira with a dashboard, transactions and reports, plus income and expense charts.',
+      tags: ['HTML', 'CSS', 'JavaScript'],
+      image: '/projects/budget-tracker.webp',
+      imageAlt: 'Budget Tracker dashboard showing income, expenses and balance cards with a bar chart and a doughnut chart',
+      live: 'https://multipagebudgettracker.vercel.app/#dashboard',
+      code: REPOS,
+    },
+    {
+      id: '04',
+      title: 'DEV Community Clone',
+      description: 'A clone of the DEV Community home page, built to practise layout and styling from a real site.',
+      tags: ['HTML', 'CSS'],
+      image: '/projects/devio-clone.webp',
+      imageAlt: 'Clone of the DEV Community home page with a left menu, a feed card and an active discussions list',
+      live: 'https://devio-clone.vercel.app/homepage.html#',
+      code: REPOS,
+    },
+    {
+      id: '05',
+      title: 'primeswitch Portfolio',
+      description: 'This site: a multi-page portfolio with light and dark themes, built from scratch.',
+      tags: ['React', 'Tailwind', 'Vite'],
+      image: '/projects/portfolio.webp',
+      imageAlt: 'The primeswitch portfolio home page with the name Alabi Tosin Samson and skill tags',
+      live: '', // TODO: add the live address once it is deployed
+      code: REPOS,
     },
   ],
 }
 
 export const experience = {
   title: 'Experience',
-  intro: 'Where I have worked and learned.',
+  intro: 'Where I have worked and what I have built.',
   // Newest first. `current: true` fills the timeline dot with the gradient.
   items: [
     {
       role: 'Web / Software Developer',
       company: 'HGSL',
-      dates: 'Start year - Present', // TODO
+      dates: '2025 - Present', // TODO
       current: true,
       bullets: [
-        'Describe what you build and ship day to day.', // TODO
-        'Add a concrete outcome, ideally with a number.', // TODO
-        'Add another outcome: speed, reach, or time saved.', // TODO
+        'Built the official HGSL company website.',
+        'Updated the website for a client, Blossom Luxury Homes and Apartment.',
+        'Currently building a WordPress website for chrismene.org.',
       ],
     },
     {
-      role: 'Front-end Developer in Training', // TODO: or your education / learning milestone
-      company: 'Self-directed learning', // TODO
-      dates: 'Year - Year', // TODO
+      role: 'Course Designer and Instructor',
+      company: 'Online students',
+      dates: '2024 - Present', // TODO
+      current: true,
+      bullets: [
+        'Designed an 8-week web design course in HTML, CSS and a little JavaScript.',
+        'Students build several websites through the course, then finish with a clone of a real site.',
+      ],
+    },
+    {
+      role: 'Web Developer',
+      company: 'primeswitch (independent projects)',
+      dates: '2023 - 2026', // TODO
       current: false,
       bullets: [
-        'Completed project-based courses in HTML, CSS, JavaScript and React.', // TODO
-        'Built portfolio projects to practise real-world skills.', // TODO
+        'Built the LABOD Concepts architecture portfolio for a client with React, Vite and Tailwind.',
+        'Built Tech.Care, a patient dashboard that loads its data from an API.',
+        'Built a multi-page budget tracker and a DEV Community clone, and this portfolio.',
+      ],
+    },
+    {
+      role: 'Front-end Developer in Training',
+      company: 'Self-directed learning',
+      dates: '2021 - present', // TODO
+      current: false,
+      bullets: [
+        'Learned HTML, CSS, JavaScript, React, Python and Django through project-based practice.',
+        'Learned Node.js, Express, MongoDB and Firebase for the back end.',
       ],
     },
   ],

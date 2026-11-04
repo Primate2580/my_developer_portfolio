@@ -20,7 +20,7 @@ export default function Projects() {
         {projects.items.map((p, i) => (
           <li key={p.id}>
             <Reveal delay={i * 0.08} className="glass flex h-full flex-col overflow-hidden rounded-3xl">
-              <div className="aspect-[16/10] overflow-hidden">
+              <div className="aspect-[2/1] overflow-hidden">
                 <ProjectImage project={p} index={i} />
               </div>
               <div className="flex flex-1 flex-col p-6">
@@ -34,16 +34,18 @@ export default function Projects() {
                   ))}
                 </ul>
                 <div className="mt-auto flex flex-wrap gap-2 pt-6">
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${projects.live}: ${p.title} (opens in a new tab)`}
-                    className={linkClass}
-                  >
-                    {projects.live}
-                    <ExternalLink aria-hidden="true" size={15} />
-                  </a>
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${projects.live}: ${p.title} (opens in a new tab)`}
+                      className={linkClass}
+                    >
+                      {projects.live}
+                      <ExternalLink aria-hidden="true" size={15} />
+                    </a>
+                  )}
                   <a
                     href={p.code}
                     target="_blank"

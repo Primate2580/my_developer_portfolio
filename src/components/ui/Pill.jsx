@@ -14,6 +14,9 @@ const palette = [
 
 const known = {
   html5: 6,
+  html: 6,
+  css: 1,
+  api: 5,
   'html & css': 6,
   css3: 1,
   javascript: 2,

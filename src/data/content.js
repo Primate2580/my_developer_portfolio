@@ -191,6 +191,16 @@ export const projects = {
       live: '', // TODO: add the live address once it is deployed
       code: REPOS,
     },
+     {
+      id: '06',
+      title: 'phonic music app',
+      description: 'A spotify clone that allows users to search for music and play it, built with React, Tailwind and Vite.',
+      tags: ['React', 'Tailwind', 'Vite'],
+      image: '/projects/phonic.jpg',
+      imageAlt: 'The primeswitch portfolio home page with the name Alabi Tosin Samson and skill tags',
+      live: 'https://phonic-xi.vercel.app/', 
+      code: REPOS,
+    },
   ],
 }
 

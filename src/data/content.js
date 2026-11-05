@@ -195,7 +195,7 @@ export const projects = {
       id: '06',
       title: 'phonic music app',
       description: 'A spotify clone that allows users to search for music and play it, built with React, Tailwind and Vite.',
-      tags: ['React', 'Tailwind', 'Vite'],
+      tags: ['React', 'Tailwind', 'Vite', 'cloudinary', 'cloudflare', 'firebase'],
       image: '/projects/phonic.jpg',
       imageAlt: 'The primeswitch portfolio home page with the name Alabi Tosin Samson and skill tags',
       live: 'https://phonic-xi.vercel.app/', 
